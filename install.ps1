@@ -168,14 +168,12 @@ function Install-Bun {
 
 function Test-NodeAvailable {
     $nodeOk = Test-Prerequisite 'node'
-    $npxOk  = Test-Prerequisite 'npx'
-    if (-not $nodeOk) {
-        Write-Warn "node not found in PATH. Some features may not work."
+    $npmOk  = Test-Prerequisite 'npm'
+    if (-not $nodeOk -or -not $npmOk) {
+        Write-Fatal "Node.js and npm are required. Install from https://nodejs.org and re-run."
     }
-    if (-not $npxOk) {
-        Write-Warn "npx not found in PATH. Some features may not work."
-    }
-    return ($nodeOk -and $npxOk)
+    Write-Success "node $(node --version) + npm $(npm --version) available"
+    return $true
 }
 
 function Test-DiskSpace {
