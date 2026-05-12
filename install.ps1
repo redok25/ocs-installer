@@ -100,24 +100,12 @@ function Test-Prerequisite {
 }
 
 function Install-Bun {
-    if (Test-Prerequisite 'bun') {
-        Write-Success "bun already installed: $(bun --version)"
-        return
+    # Bun no longer required — using npm instead
+    # Keep function name for backward compat with main execution flow
+    if (-not (Test-Prerequisite 'npm')) {
+        Write-Fatal "npm not found. Please install Node.js from https://nodejs.org and re-run."
     }
-    Write-Host "  Installing bun..." -ForegroundColor DarkGray
-    try {
-        Invoke-Expression (Invoke-RestMethod 'https://bun.sh/install.ps1')
-    } catch {
-        Write-Fatal "Failed to install bun: $_"
-    }
-    # Refresh PATH for current session
-    $userPath    = [System.Environment]::GetEnvironmentVariable('PATH', 'User')
-    $machinePath = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
-    $env:PATH    = $userPath + ';' + $machinePath
-    if (-not (Test-Prerequisite 'bun')) {
-        Write-Fatal "bun installation completed but 'bun' command not found. Restart your terminal and re-run."
-    }
-    Write-Success "bun installed: $(bun --version)"
+    Write-Success "npm available: $(npm --version)"
 }
 
 function Test-NodeAvailable {
@@ -410,19 +398,20 @@ function Install-OCSBundle {
     }
     Write-Success "Bundle contents verified"
 
-    # Run bun install
-    Write-Host "  Running bun install..." -ForegroundColor DarkGray
-    & bun install --cwd "$BUNDLE_DIR" 2>&1 | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
+    # Run npm install
+    Write-Host "  Running npm install..." -ForegroundColor DarkGray
+    $npmOut = npm install --prefix "$BUNDLE_DIR" 2>&1
+    $npmOut | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
     if ($LASTEXITCODE -ne 0) {
-        Write-Fatal "bun install failed with exit code $LASTEXITCODE"
+        Write-Fatal "npm install failed with exit code $LASTEXITCODE"
     }
 
     # Verify node_modules created
     $nodeModulesPath = Join-Path $BUNDLE_DIR "node_modules"
     if (-not (Test-Path -LiteralPath $nodeModulesPath)) {
-        Write-Fatal "bun install completed but 'node_modules' not found in '$BUNDLE_DIR'"
+        Write-Fatal "npm install completed but 'node_modules' not found in '$BUNDLE_DIR'"
     }
-    Write-Success "bun install completed: node_modules created"
+    Write-Success "npm install completed: node_modules created"
 }
 
 # ---------------------------------------------------------------------------
