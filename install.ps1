@@ -21,7 +21,7 @@ $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSVersion.Major -lt 5 -or
     ($PSVersionTable.PSVersion.Major -eq 5 -and $PSVersionTable.PSVersion.Minor -lt 1)) {
     Write-Host "ERROR: PowerShell 5.1 or higher is required. Current: $($PSVersionTable.PSVersion)" -ForegroundColor Red
-    exit 1
+    throw "PowerShell 5.1+ required"
 }
 
 # ---------------------------------------------------------------------------
@@ -64,7 +64,7 @@ function Write-Warn {
 function Write-Fatal {
     param([Parameter(Mandatory)][string]$Message)
     Write-Host "  [ERROR] $Message" -ForegroundColor Red
-    exit 1
+    throw $Message
 }
 
 function Write-Banner {
@@ -869,7 +869,7 @@ if (-not $FunctionsOnly) {
         $proceed = Test-ExistingInstall
         if (-not $proceed) {
             Write-Host "Installation skipped by user." -ForegroundColor Yellow
-            exit 0
+            return
         }
 
         # Step 2: Prerequisites
@@ -923,6 +923,5 @@ if (-not $FunctionsOnly) {
         Write-Host "  - Network connectivity" -ForegroundColor DarkGray
         Write-Host "  - Disk space" -ForegroundColor DarkGray
         Write-Host "  - PowerShell version (5.1+ required)" -ForegroundColor DarkGray
-        exit 1
     }
 }
