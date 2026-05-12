@@ -100,12 +100,69 @@ function Test-Prerequisite {
 }
 
 function Install-Bun {
-    # Bun no longer required — using npm instead
-    # Keep function name for backward compat with main execution flow
-    if (-not (Test-Prerequisite 'npm')) {
-        Write-Fatal "npm not found. Please install Node.js from https://nodejs.org and re-run."
+    # The real bun binary lives at $HOME\.bun\bin\bun.exe
+    # Kiro-Cli ships a broken shim at AppData\Local\Kiro-Cli\bun (no .exe)
+    # which causes "Cannot run a document in the middle of a pipeline"
+    $realBunDir = Join-Path $HOME ".bun\bin"
+    $realBunExe = Join-Path $realBunDir "bun.exe"
+
+    # Check if bun resolves to the wrong path (Kiro-Cli wrapper)
+    $currentBun = Get-Command 'bun' -ErrorAction SilentlyContinue
+    if ($currentBun) {
+        $bunPath = $currentBun.Source
+        if ($bunPath -and (-not $bunPath.EndsWith('.exe'))) {
+            Write-Warn "Detected broken bun shim at: $bunPath"
+            Write-Host "  Fixing PATH to use real bun binary..." -ForegroundColor DarkGray
+            # Remove the bad directory from PATH for this session
+            $badDir = Split-Path $bunPath -Parent
+            $env:PATH = ($env:PATH -split ';' | Where-Object { $_ -ne $badDir }) -join ';'
+            # Prepend real bun dir if it exists
+            if (Test-Path -LiteralPath $realBunExe) {
+                $env:PATH = "$realBunDir;$env:PATH"
+                # Also fix the persisted user PATH
+                $userPath = [System.Environment]::GetEnvironmentVariable('PATH', 'User')
+                if ($userPath -notlike "*$realBunDir*") {
+                    $userPath = "$realBunDir;$userPath"
+                }
+                # Remove bad dir from persisted PATH
+                $userPath = ($userPath -split ';' | Where-Object { $_ -ne $badDir }) -join ';'
+                [System.Environment]::SetEnvironmentVariable('PATH', $userPath, 'User')
+                Write-Success "PATH fixed: using $realBunExe"
+                Write-Success "bun available: $(& $realBunExe --version)"
+                return
+            }
+            # Real bun not installed yet — fall through to install
+        } else {
+            # bun.exe found and it's a real executable
+            Write-Success "bun already installed: $(bun --version)"
+            return
+        }
     }
-    Write-Success "npm available: $(npm --version)"
+
+    # Install bun from official installer
+    Write-Host "  Installing bun..." -ForegroundColor DarkGray
+    try {
+        Invoke-Expression (Invoke-RestMethod 'https://bun.sh/install.ps1')
+    } catch {
+        Write-Fatal "Failed to install bun: $_"
+    }
+
+    # Refresh PATH for current session
+    $userPath    = [System.Environment]::GetEnvironmentVariable('PATH', 'User')
+    $machinePath = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
+    $env:PATH    = $userPath + ';' + $machinePath
+
+    # Ensure real bun dir is first (ahead of any Kiro-Cli shim)
+    if (Test-Path -LiteralPath $realBunExe) {
+        if ($env:PATH -notlike "*$realBunDir*") {
+            $env:PATH = "$realBunDir;$env:PATH"
+        }
+    }
+
+    if (-not (Test-Prerequisite 'bun')) {
+        Write-Fatal "bun installation completed but 'bun' command not found. Restart your terminal and re-run."
+    }
+    Write-Success "bun installed: $(bun --version)"
 }
 
 function Test-NodeAvailable {
@@ -398,20 +455,19 @@ function Install-OCSBundle {
     }
     Write-Success "Bundle contents verified"
 
-    # Run npm install
-    Write-Host "  Running npm install..." -ForegroundColor DarkGray
-    $npmOut = npm install --prefix "$BUNDLE_DIR" 2>&1
-    $npmOut | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
+    # Run bun install
+    Write-Host "  Running bun install..." -ForegroundColor DarkGray
+    & bun install --cwd "$BUNDLE_DIR" 2>&1 | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
     if ($LASTEXITCODE -ne 0) {
-        Write-Fatal "npm install failed with exit code $LASTEXITCODE"
+        Write-Fatal "bun install failed with exit code $LASTEXITCODE"
     }
 
     # Verify node_modules created
     $nodeModulesPath = Join-Path $BUNDLE_DIR "node_modules"
     if (-not (Test-Path -LiteralPath $nodeModulesPath)) {
-        Write-Fatal "npm install completed but 'node_modules' not found in '$BUNDLE_DIR'"
+        Write-Fatal "bun install completed but 'node_modules' not found in '$BUNDLE_DIR'"
     }
-    Write-Success "npm install completed: node_modules created"
+    Write-Success "bun install completed: node_modules created"
 }
 
 # ---------------------------------------------------------------------------
