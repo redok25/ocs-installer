@@ -695,7 +695,7 @@ function Get-GitHubToken {
     # Set Homepage URL to https://github.com/redok25/ocs-installer
     # Set Authorization callback URL to https://localhost (not used for device flow)
     # Then set the Client ID below or via the OCS_GITHUB_CLIENT_ID environment variable.
-    $clientId = if ($env:OCS_GITHUB_CLIENT_ID) { $env:OCS_GITHUB_CLIENT_ID } else { "PLACEHOLDER_CLIENT_ID" }
+    $clientId = if ($env:OCS_GITHUB_CLIENT_ID) { $env:OCS_GITHUB_CLIENT_ID } else { "Ov23liIXhas47rLY2YbU" }
 
     Write-Host "  Authenticating with GitHub..." -ForegroundColor DarkGray
 
