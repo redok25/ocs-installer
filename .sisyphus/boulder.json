@@ -1,0 +1,104 @@
+{
+  "active_plan": "C:\\laragon\\www\\ocs-me\\.sisyphus\\plans\\ocs-installer.md",
+  "started_at": "2026-05-12T18:20:52.195Z",
+  "session_ids": [
+    "ses_1e2baab96ffeysHO0nUEgZ4pAp"
+  ],
+  "session_origins": {
+    "ses_1e2baab96ffeysHO0nUEgZ4pAp": "direct"
+  },
+  "plan_name": "ocs-installer",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Script Scaffold + Configuration Variables",
+      "session_id": "ses_1e292ee24ffe2n67zugQ5OwMLf",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "updated_at": "2026-05-12T18:29:49.291Z"
+    },
+    "todo:5": {
+      "task_key": "todo:5",
+      "task_label": "5",
+      "task_title": "OpenCode Binary Installer Section",
+      "session_id": "ses_1e2809879ffeyLXN9vej3Ki704",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "updated_at": "2026-05-12T18:44:11.860Z"
+    },
+    "todo:6": {
+      "task_key": "todo:6",
+      "task_label": "6",
+      "task_title": "Bundle Download + Extraction Section",
+      "session_id": "ses_1e277d9c3ffe2B9Ss8hcVemR0y",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "updated_at": "2026-05-12T18:53:58.229Z"
+    },
+    "todo:7": {
+      "task_key": "todo:7",
+      "task_label": "7",
+      "task_title": "Config Templating (Patungin Provider + Model Routing)",
+      "session_id": "ses_1e2751337ffeBt4HLbWNq5IdLV",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-05-12T18:56:35.958Z"
+    },
+    "todo:8": {
+      "task_key": "todo:8",
+      "task_label": "8",
+      "task_title": "Skills Installation Section",
+      "session_id": "ses_1e272a752ffe9QEOViorIZJzYE",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "updated_at": "2026-05-12T18:58:54.225Z"
+    },
+    "todo:9": {
+      "task_key": "todo:9",
+      "task_label": "9",
+      "task_title": "CocoIndex Setup Section",
+      "session_id": "ses_1e270cb1dffe1xrqU03tpOciYT",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "updated_at": "2026-05-12T19:00:36.897Z"
+    },
+    "todo:10": {
+      "task_key": "todo:10",
+      "task_label": "10",
+      "task_title": "API Key Prompt + Validation",
+      "session_id": "ses_1e26dacf3ffeti6wXHXHCl4ehO",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-12T19:03:52.225Z"
+    },
+    "todo:11": {
+      "task_key": "todo:11",
+      "task_label": "11",
+      "task_title": "Post-Install Verification + Summary",
+      "session_id": "ses_1e26c2f16ffeE41gJOcHIC9CeH",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "updated_at": "2026-05-12T19:06:55.981Z"
+    },
+    "todo:12": {
+      "task_key": "todo:12",
+      "task_label": "12",
+      "task_title": "Full Script Assembly + End-to-End Test",
+      "session_id": "ses_1e2692a95ffeeq7LUuzPjYM0W6",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-05-12T19:08:49.687Z"
+    },
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "**Plan Compliance Audit** — `oracle`",
+      "session_id": "ses_1e25bc7a8ffezhMvgDtrmuO5nv",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-05-12T19:25:10.198Z"
+    }
+  }
+}

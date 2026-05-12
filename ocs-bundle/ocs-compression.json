@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "managedBy": "ocs",
+  "policyFilePath": "C:\\Users\\redho\\.config\\opencode\\ocs-compression.json",
+  "compression": {
+    "schemaVersion": 1,
+    "engine": "dcp",
+    "intentMode": "balanced",
+    "routing": {
+      "autoCommandPathEngine": "rtk",
+      "autoProsePathEngine": "caveman",
+      "defaultEngine": "dcp",
+      "ambiguousIntent": "reject",
+      "unavailableEngineBehavior": "error"
+    },
+    "engines": {
+      "dcp": {
+        "enabled": true
+      },
+      "caveman": {
+        "enabled": true,
+        "mode": "ultra"
+      },
+      "rtk": {
+        "enabled": true
+      }
+    }
+  }
+}

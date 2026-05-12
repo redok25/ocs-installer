@@ -1,0 +1,181 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Main coordinator - Antigravity Gemini 3.1 Pro (native orchestrator)"
+    },
+    "oracle": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Design & debugging - Antigravity Gemini 3.1 Pro (1M context)"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Research - Antigravity Gemini 3.1 Pro"
+    },
+    "explore": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Codebase exploration - Antigravity Gemini 3 Flash"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Vision - Antigravity Gemini 3.1 Pro"
+    },
+    "prometheus": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Architect - Antigravity Gemini 3.1 Pro"
+    },
+    "metis": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Strategy - Antigravity Gemini 3.1 Pro"
+    },
+    "momus": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Critique - Antigravity Gemini 3.1 Pro"
+    },
+    "atlas": {
+      "model": "google/antigravity-gpt-oss-120b-medium",
+      "variant": "max",
+      "comment": "Heavy lifting orchestrator - Antigravity GPT-OSS 120B"
+    },
+    "hephaestus": {
+      "model": "google/antigravity-gpt-oss-120b-medium",
+      "variant": "max",
+      "comment": "Deep engineering execution - Antigravity GPT-OSS 120B"
+    },
+    "executor": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Fast implementation - Antigravity Gemini 3 Flash"
+    },
+    "reviewer": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Code review - Antigravity Gemini 3.1 Pro"
+    },
+    "tester": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Test generation - Antigravity Gemini 3 Flash"
+    },
+    "security-auditor": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "max",
+      "comment": "Security - Antigravity Gemini 3.1 Pro"
+    },
+    "refactorer": {
+      "model": "google/antigravity-gpt-oss-120b-medium",
+      "comment": "Refactoring - Antigravity GPT-OSS 120B"
+    },
+    "doc-writer": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Documentation - Antigravity Gemini 3.1 Pro"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ]
+    },
+    "markdown": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    },
+    "go": {
+      "command": [
+        "gopls"
+      ],
+      "extensions": [
+        ".go"
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "UI/UX - Antigravity Gemini 3.1 Pro"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Creative - Antigravity Gemini 3.1 Pro"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Writing - Antigravity Gemini 3.1 Pro"
+    },
+    "quick": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Fast tasks - Antigravity Gemini 3 Flash"
+    },
+    "ultrabrain": {
+      "model": "google/antigravity-gpt-oss-120b-medium",
+      "variant": "max",
+      "comment": "Heavy reasoning - Antigravity GPT-OSS 120B"
+    },
+    "implementation": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Implementation - Antigravity Gemini 3 Flash"
+    },
+    "review": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Review - Antigravity Gemini 3.1 Pro"
+    },
+    "testing": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Testing - Antigravity Gemini 3 Flash"
+    },
+    "security": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "max",
+      "comment": "Security - Antigravity Gemini 3.1 Pro"
+    },
+    "unspecified-low": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "General low - Antigravity Gemini 3 Flash"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "General high - Antigravity Gemini 3.1 Pro"
+    },
+    "deep": {
+      "model": "google/antigravity-gpt-oss-120b-medium",
+      "variant": "max",
+      "comment": "Deep reasoning - Antigravity GPT-OSS 120B"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": [
+        "impeccable-style"
+      ],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": [
+        "implementation",
+        "security"
+      ]
+    }
+  }
+}

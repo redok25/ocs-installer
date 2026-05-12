@@ -1,0 +1,156 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": ["anthropic-context-window-limit-recovery"],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Main coordinator - Antigravity Sonnet 4.6"
+    },
+    "oracle": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Design & debugging - Antigravity Sonnet 4.6"
+    },
+    "librarian": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Research - Antigravity Sonnet 4.6"
+    },
+    "explore": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Codebase exploration - Antigravity Sonnet 4.6"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Vision - Antigravity Sonnet 4.6"
+    },
+    "prometheus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Architect - Antigravity Sonnet 4.6"
+    },
+    "metis": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Strategy - Antigravity Sonnet 4.6"
+    },
+    "momus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Critique - Antigravity Sonnet 4.6"
+    },
+    "atlas": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Heavy lifting - Antigravity Sonnet 4.6"
+    },
+    "executor": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Fast implementation - Antigravity Sonnet 4.6"
+    },
+    "reviewer": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Code review - Antigravity Sonnet 4.6"
+    },
+    "tester": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Test generation - Antigravity Sonnet 4.6"
+    },
+    "security-auditor": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Security - Antigravity Sonnet 4.6"
+    },
+    "refactorer": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Refactoring - Antigravity Sonnet 4.6"
+    },
+    "doc-writer": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Documentation - Antigravity Sonnet 4.6"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"]
+    },
+    "markdown": {
+      "command": ["marksman", "server"],
+      "extensions": [".md"]
+    },
+    "go": {
+      "command": ["gopls"],
+      "extensions": [".go"]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "UI/UX - Antigravity Sonnet 4.6"
+    },
+    "artistry": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Creative - Antigravity Sonnet 4.6"
+    },
+    "writing": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Writing - Antigravity Sonnet 4.6"
+    },
+    "quick": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Fast tasks - Antigravity Sonnet 4.6"
+    },
+    "ultrabrain": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Heavy reasoning - Antigravity Sonnet 4.6"
+    },
+    "implementation": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Implementation - Antigravity Sonnet 4.6"
+    },
+    "review": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Review - Antigravity Sonnet 4.6"
+    },
+    "testing": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Testing - Antigravity Sonnet 4.6"
+    },
+    "security": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Security - Antigravity Sonnet 4.6"
+    },
+    "unspecified-low": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "General low - Antigravity Sonnet 4.6"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "General high - Antigravity Sonnet 4.6"
+    },
+    "deep": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Deep reasoning - Antigravity Sonnet 4.6"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

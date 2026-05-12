@@ -1,0 +1,22 @@
+# Local-only files
+.env
+.env.*
+!.env.example
+*.local
+*.local.*
+
+# Runtime/cache/dependencies
+node_modules/
+.cache/
+dist/
+coverage/
+*.log
+*.tmp
+*.bak
+backups/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

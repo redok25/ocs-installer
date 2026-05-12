@@ -1,0 +1,175 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": ["anthropic-context-window-limit-recovery"],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "medium",
+      "comment": "Main coordinator - GPT 5.4 Fast"
+    },
+    "oracle": {
+      "model": "openai/gpt-5.5-fast",
+      "variant": "max",
+      "comment": "Deep analysis - GPT 5.5 Fast"
+    },
+    "librarian": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "Research - GPT 5.4 Mini Fast"
+    },
+    "explore": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "low",
+      "comment": "Codebase exploration - GPT 5.4 Mini Fast"
+    },
+    "multimodal-looker": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "high",
+      "comment": "Vision and interpretation - GPT 5.4 Fast"
+    },
+    "prometheus": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "xhigh",
+      "comment": "Architecture - GPT 5.4 Fast"
+    },
+    "metis": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "xhigh",
+      "comment": "Strategy - GPT 5.4 Fast"
+    },
+    "momus": {
+      "model": "openai/gpt-5.5-fast",
+      "variant": "max",
+      "comment": "Critique and quality gate - GPT 5.5 Fast"
+    },
+    "atlas": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "high",
+      "comment": "Heavy lifting - GPT 5.4 Fast"
+    },
+    "hephaestus": {
+      "model": "openai/gpt-5.5-fast",
+      "variant": "max",
+      "comment": "Deep engineering execution - GPT 5.5 Fast"
+    },
+    "executor": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "low",
+      "comment": "Implementation - GPT 5.4 Mini Fast"
+    },
+    "reviewer": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "medium",
+      "comment": "Code review - GPT 5.4 Fast"
+    },
+    "tester": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "low",
+      "comment": "Test generation - GPT 5.4 Mini Fast"
+    },
+    "security-auditor": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "max",
+      "comment": "Security - GPT 5.4 Fast"
+    },
+    "refactorer": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "Refactoring - GPT 5.4 Mini Fast"
+    },
+    "doc-writer": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "Documentation - GPT 5.4 Mini Fast"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"]
+    },
+    "go": {
+      "command": ["gopls"],
+      "extensions": [".go"]
+    },
+    "markdown": {
+      "command": ["marksman", "server"],
+      "extensions": [".md"]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "medium",
+      "comment": "UI/UX - GPT 5.4 Fast"
+    },
+    "artistry": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "Creative work - GPT 5.4 Mini Fast"
+    },
+    "writing": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "Writing - GPT 5.4 Mini Fast"
+    },
+    "quick": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "low",
+      "comment": "Fast tasks - GPT 5.4 Mini Fast"
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "max",
+      "comment": "Heavy reasoning - GPT 5.4 Fast"
+    },
+    "implementation": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "Implementation - GPT 5.4 Mini Fast"
+    },
+    "review": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "medium",
+      "comment": "Review - GPT 5.4 Fast"
+    },
+    "testing": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "low",
+      "comment": "Testing - GPT 5.4 Mini Fast"
+    },
+    "security": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "max",
+      "comment": "Security - GPT 5.4 Fast"
+    },
+    "unspecified-low": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "low",
+      "comment": "General low - GPT 5.4 Mini Fast"
+    },
+    "unspecified-high": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "variant": "high",
+      "comment": "General high - GPT 5.4 Mini Fast"
+    },
+    "deep": {
+      "model": "openai/gpt-5.4-fast",
+      "variant": "xhigh",
+      "comment": "Deep reasoning - GPT 5.4 Fast"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

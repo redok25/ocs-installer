@@ -1,0 +1,171 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Main coordinator - OpenAI Codex 5.3"
+    },
+    "oracle": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Design & debugging - Antigravity Gemini 3.1 Pro (1M context)"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Research - Antigravity Gemini 3.1 Pro (Replaces Kimi)"
+    },
+    "explore": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Codebase exploration - Antigravity Gemini 3.1 Pro"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Vision - Antigravity Gemini 3.1 Pro"
+    },
+    "prometheus": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Architect - OpenAI Codex 5.3"
+    },
+    "metis": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Strategy - OpenAI Codex 5.3 (Replaces Kimi)"
+    },
+    "momus": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Critique - OpenAI Codex 5.3 (Replaces MiniMax)"
+    },
+    "atlas": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Heavy lifting - Antigravity Gemini 3.1 Pro"
+    },
+    "executor": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Fast implementation - Antigravity Gemini 3 Flash (Replaces MiniMax)"
+    },
+    "reviewer": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Code review - OpenAI Codex 5.3 (Replaces Kimi)"
+    },
+    "tester": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Test generation - Antigravity Gemini 3 Flash (Replaces MiniMax)"
+    },
+    "security-auditor": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Security - OpenAI Codex 5.3"
+    },
+    "refactorer": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Refactoring - Antigravity Gemini 3.1 Pro (Replaces MiniMax)"
+    },
+    "doc-writer": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Documentation - Antigravity Gemini 3.1 Pro (Replaces Kimi)"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ]
+    },
+    "markdown": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    },
+    "go": {
+      "command": [
+        "gopls"
+      ],
+      "extensions": [
+        ".go"
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "UI/UX - Antigravity Gemini 3.1 Pro"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Creative - Antigravity Gemini 3.1 Pro"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Writing - Antigravity Gemini 3.1 Pro (Replaces Kimi)"
+    },
+    "quick": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Fast tasks - Antigravity Gemini 3 Flash"
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Heavy reasoning - OpenAI Codex 5.3"
+    },
+    "implementation": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Implementation - Antigravity Gemini 3 Flash (Replaces MiniMax)"
+    },
+    "review": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Review - OpenAI Codex 5.3 (Replaces Kimi)"
+    },
+    "testing": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Testing - Antigravity Gemini 3 Flash (Replaces MiniMax)"
+    },
+    "security": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Security - OpenAI Codex 5.3"
+    },
+    "unspecified-low": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "General low - Antigravity Gemini 3 Flash"
+    },
+    "unspecified-high": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "General high - OpenAI Codex 5.3"
+    },
+    "deep": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Deep reasoning - Codex 5.3 (Opus 4.6 has errors)"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

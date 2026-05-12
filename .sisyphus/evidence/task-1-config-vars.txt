@@ -1,0 +1,4 @@
+$INSTALL_DIR      = if ($env:OCS_INSTALL_DIR)   { $env:OCS_INSTALL_DIR }  else { Join-Path $HOME ".opencode" }
+$CONFIG_DIR       = if ($env:OCS_CONFIG_DIR)    { $env:OCS_CONFIG_DIR }   else { Join-Path $HOME ".config/opencode" }
+$SKILLS_DIR       = if ($env:OCS_SKILLS_DIR)    { $env:OCS_SKILLS_DIR }   else { Join-Path $HOME ".agents/skills" }
+$BUNDLE_DIR       = if ($env:OCS_BUNDLE_DIR)    { $env:OCS_BUNDLE_DIR }   else { Join-Path $HOME "hermes-ocs-bundle" }

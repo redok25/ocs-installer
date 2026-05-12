@@ -1,0 +1,3 @@
+  [WARN] node not found in PATH. Some features may not work.
+  [WARN] npx not found in PATH. Some features may not work.
+Test-NodeAvailable returned: False

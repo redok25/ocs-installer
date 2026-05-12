@@ -1,0 +1,980 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "oh-my-openagent@4.0.0",
+    "@tarquinen/opencode-dcp@3.1.11",
+    "cc-safety-net@0.9.0",
+    "@ramtinj95/opencode-tokenscope@1.6.3"
+  ],
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "grep_app": {
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "github": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ]
+    },
+    "time": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "time-mcp"
+      ]
+    },
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp",
+      "headers": {
+        "x-api-key": "{env:EXA_API_KEY}"
+      }
+    },
+    "cocoindex-code": {
+      "type": "local",
+      "command": [
+        "C:\\Users\\redho\\.bun\\bin\\bun.exe",
+        "C:\\Users\\redho\\.config\\opencode\\scripts\\cocoindex-mcp-bridge.cjs",
+        "C:\\Users\\redho\\.local\\bin\\ccc.exe"
+      ]
+    }
+  },
+  "provider": {
+    "google": {
+      "models": {
+        "antigravity-gemini-3.1-pro": {
+          "name": "Gemini 3.1 Pro (Antigravity) OCS",
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "antigravity-gemini-3-flash": {
+          "name": "Gemini 3 Flash (Antigravity) OCS",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "minimal": {
+              "thinkingLevel": "minimal"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "antigravity-claude-sonnet-4-6-thinking": {
+          "name": "Claude Sonnet 4.6 Thinking (Antigravity) OCS",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
+            }
+          }
+        },
+        "antigravity-claude-opus-4-6-thinking": {
+          "name": "Claude Opus 4.6 Thinking (Antigravity) OCS",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
+            }
+          }
+        },
+        "antigravity-gpt-oss-120b-medium": {
+          "name": "GPT-OSS 120B (Medium) (Antigravity) OCS",
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash (Gemini CLI) OCS",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-2.5-pro": {
+          "name": "Gemini 2.5 Pro (Gemini CLI) OCS",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash Preview (Gemini CLI) OCS",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-3.1-pro-preview": {
+          "name": "Gemini 3.1 Pro Preview (Gemini CLI) OCS",
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      }
+    },
+    "openai": {
+      "models": {
+        "gpt-5.2": {
+          "name": "GPT 5.2 (OpenAI) OCS",
+          "limit": {
+            "context": 400000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "max": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "gpt-5.4": {
+          "name": "GPT 5.4 (OpenAI) OCS",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "xhigh": {
+              "thinkingLevel": "xhigh"
+            },
+            "max": {
+              "thinkingLevel": "xhigh"
+            }
+          }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT 5.4 Mini (OpenAI) OCS",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "max": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "gpt-5.3-codex": {
+          "name": "GPT 5.3 Codex (OpenAI) OCS",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "max": {
+              "thinkingLevel": "xhigh"
+            }
+          }
+        },
+        "gpt-5.4-fast": {
+          "name": "GPT 5.4 Fast (OpenAI) OCS",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "xhigh": {
+              "thinkingLevel": "xhigh"
+            },
+            "max": {
+              "thinkingLevel": "xhigh"
+            }
+          }
+        },
+        "gpt-5.4-mini-fast": {
+          "name": "GPT 5.4 Mini Fast (OpenAI) OCS",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "max": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "gpt-5.5": {
+          "name": "GPT 5.5 (OpenAI) OCS",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "xhigh": {
+              "thinkingLevel": "xhigh"
+            },
+            "max": {
+              "thinkingLevel": "xhigh"
+            }
+          }
+        },
+        "gpt-5.5-fast": {
+          "name": "GPT 5.5 Fast (OpenAI) OCS",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            },
+            "xhigh": {
+              "thinkingLevel": "xhigh"
+            },
+            "max": {
+              "thinkingLevel": "xhigh"
+            }
+          }
+        }
+      }
+    },
+    "zai": {
+      "models": {
+        "glm-4.5": {
+          "name": "GLM 4.5 (ZhipuAI) OCS",
+          "limit": {
+            "context": 131072,
+            "output": 16384
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "glm-4.5-air": {
+          "name": "GLM 4.5 Air (ZhipuAI) OCS",
+          "limit": {
+            "context": 131072,
+            "output": 16384
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "glm-4.7": {
+          "name": "GLM 4.7 (ZhipuAI) OCS",
+          "limit": {
+            "context": 131072,
+            "output": 16384
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "reasoning": true
+        },
+        "glm-5": {
+          "name": "GLM 5 (ZhipuAI) OCS",
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "reasoning": true
+        },
+        "glm-5.1": {
+          "name": "GLM 5.1 (ZhipuAI) OCS",
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "reasoning": true
+        }
+      }
+    },
+    "qwen": {
+      "models": {
+        "qwen3.5-plus": {
+          "name": "Qwen 3.5 Plus (Alibaba) OCS",
+          "limit": {
+            "context": 131072,
+            "output": 16384
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "reasoning": true
+        }
+      }
+    },
+    "hexos": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "HexOS",
+      "options": {
+        "baseURL": "http://localhost:7470/v1",
+        "apiKey": "hx-a4c970376638da85ac634d3ade23f4c32957553ade206152"
+      },
+      "models": {
+        "hx/ultimate": {
+          "name": "HexOS Ultimate",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "hx/auto": {
+          "name": "HexOS Auto",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "hx/medium": {
+          "name": "HexOS Medium",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "hx/free": {
+          "name": "HexOS Free",
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "cb/gpt-5.4": {
+          "name": "GPT 5.4 (HexOS CB)",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "cb/gemini-3.1-pro": {
+          "name": "Gemini 3.1 Pro (HexOS CB)",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "cx/gpt-5.5": {
+          "name": "GPT 5.5 (HexOS CX)",
+          "limit": {
+            "context": 272000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "cx/gpt-5.4": {
+          "name": "GPT 5.4 (HexOS CX)",
+          "limit": {
+            "context": 272000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "cx/gpt-5.3-codex": {
+          "name": "Codex 5.3 (HexOS CX)",
+          "limit": {
+            "context": 272000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "cl/claude-opus-4.7": {
+          "name": "Claude Opus 4.7 (HexOS CL)",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "cl/claude-sonnet-4.6": {
+          "name": "Claude Sonnet 4.6 (HexOS CL)",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "cb/gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash (HexOS CB)",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "qd/ultimate": {
+          "name": "Qdash Ultimate (HexOS QD)",
+          "limit": {
+            "context": 180000,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "qd/performance": {
+          "name": "Qdash Performance (HexOS QD)",
+          "limit": {
+            "context": 180000,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "kr/claude-opus-4.7": {
+          "name": "Claude Opus 4.7 (Kiro)",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kr/claude-opus-4.6": {
+          "name": "Claude Opus 4.6 (Kiro)",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kr/claude-opus-4.5": {
+          "name": "Claude Opus 4.5 (Kiro)",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kr/claude-sonnet-4.5": {
+          "name": "Claude Sonnet 4.5 (Kiro)",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kr/claude-sonnet-4": {
+          "name": "Claude Sonnet 4 (Kiro)",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kr/claude-haiku-4.5": {
+          "name": "Claude Haiku 4.5 (Kiro)",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kr/deepseek-3.2": {
+          "name": "DeepSeek V3.2 (Kiro)",
+          "limit": {
+            "context": 128000,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "kr/qwen3-coder-next": {
+          "name": "Qwen 3 Coder Next (Kiro)",
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "kr/glm-5": {
+          "name": "GLM 5 (Kiro)",
+          "limit": {
+            "context": 128000,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "reasoning": true
+        },
+        "kr/minimax-m2.1": {
+          "name": "MiniMax M2.1 (Kiro)",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        }
+      }
+    },
+    "patungin": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Patungin AI",
+      "options": {
+        "baseURL": "https://ai.patungin.id/v1",
+        "apiKey": "patunginmfWlqq6tnWskjq4W7PD3Jg"
+      },
+      "models": {
+        "gpt-5.5": {
+          "name": "GPT 5.5 (Patungin)",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingLevel": "low" },
+            "medium": { "thinkingLevel": "medium" },
+            "high": { "thinkingLevel": "high" },
+            "xhigh": { "thinkingLevel": "xhigh" },
+            "max": { "thinkingLevel": "xhigh" }
+          }
+        },
+        "gpt-5.4": {
+          "name": "GPT 5.4 (Patungin)",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingLevel": "low" },
+            "medium": { "thinkingLevel": "medium" },
+            "high": { "thinkingLevel": "high" },
+            "xhigh": { "thinkingLevel": "xhigh" },
+            "max": { "thinkingLevel": "xhigh" }
+          }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT 5.4 Mini (Patungin)",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingLevel": "low" },
+            "high": { "thinkingLevel": "high" },
+            "max": { "thinkingLevel": "high" }
+          }
+        },
+        "gpt-5.3-codex": {
+          "name": "GPT 5.3 Codex (Patungin)",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingLevel": "low" },
+            "max": { "thinkingLevel": "xhigh" }
+          }
+        },
+        "gpt-5.2": {
+          "name": "GPT 5.2 (Patungin)",
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingLevel": "low" },
+            "high": { "thinkingLevel": "high" },
+            "max": { "thinkingLevel": "high" }
+          }
+        }
+      }
+    }
+  }
+}

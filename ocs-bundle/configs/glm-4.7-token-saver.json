@@ -1,0 +1,175 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": ["anthropic-context-window-limit-recovery"],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "zai/glm-4.7",
+      "variant": "low",
+      "comment": "Main coordinator - GLM 4.7 low"
+    },
+    "oracle": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Deep analysis - GLM 4.7"
+    },
+    "librarian": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Research - GLM 4.5 Air"
+    },
+    "explore": {
+      "model": "zai/glm-4.5-air",
+      "variant": "low",
+      "comment": "Codebase exploration - GLM 4.5 Air"
+    },
+    "multimodal-looker": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Vision and interpretation - GLM 4.7"
+    },
+    "prometheus": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Architecture - GLM 4.7"
+    },
+    "metis": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Strategy - GLM 4.7"
+    },
+    "momus": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Critique and quality gate - GLM 4.5 Air"
+    },
+    "atlas": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Heavy lifting - GLM 4.7"
+    },
+    "hephaestus": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Deep engineering execution - GLM 4.7"
+    },
+    "executor": {
+      "model": "zai/glm-4.5-air",
+      "variant": "low",
+      "comment": "Implementation - GLM 4.5 Air"
+    },
+    "reviewer": {
+      "model": "zai/glm-4.5",
+      "variant": "low",
+      "comment": "Code review - GLM 4.5 low"
+    },
+    "tester": {
+      "model": "zai/glm-4.5-air",
+      "variant": "low",
+      "comment": "Test generation - GLM 4.5 Air"
+    },
+    "security-auditor": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Security - GLM 4.7"
+    },
+    "refactorer": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Refactoring - GLM 4.5 Air"
+    },
+    "doc-writer": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Documentation - GLM 4.5 Air"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"]
+    },
+    "go": {
+      "command": ["gopls"],
+      "extensions": [".go"]
+    },
+    "markdown": {
+      "command": ["marksman", "server"],
+      "extensions": [".md"]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "zai/glm-4.7",
+      "variant": "low",
+      "comment": "UI/UX - GLM 4.7 low"
+    },
+    "artistry": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Creative work - GLM 4.5 Air"
+    },
+    "writing": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Writing - GLM 4.5 Air"
+    },
+    "quick": {
+      "model": "zai/glm-4.5-air",
+      "variant": "low",
+      "comment": "Fast tasks - GLM 4.5 Air"
+    },
+    "ultrabrain": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Heavy reasoning - GLM 4.7"
+    },
+    "implementation": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "Implementation - GLM 4.5 Air"
+    },
+    "review": {
+      "model": "zai/glm-4.5",
+      "variant": "low",
+      "comment": "Review - GLM 4.5 low"
+    },
+    "testing": {
+      "model": "zai/glm-4.5-air",
+      "variant": "low",
+      "comment": "Testing - GLM 4.5 Air"
+    },
+    "security": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Security - GLM 4.7"
+    },
+    "unspecified-low": {
+      "model": "zai/glm-4.5-air",
+      "variant": "low",
+      "comment": "General low - GLM 4.5 Air"
+    },
+    "unspecified-high": {
+      "model": "zai/glm-4.5-air",
+      "variant": "high",
+      "comment": "General high - GLM 4.5 Air"
+    },
+    "deep": {
+      "model": "zai/glm-4.7",
+      "variant": "high",
+      "comment": "Deep reasoning - GLM 4.7"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

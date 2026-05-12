@@ -1,0 +1,143 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": ["anthropic-context-window-limit-recovery"],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Main coordinator - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "oracle": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Design & debugging - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "librarian": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Research - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "explore": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Codebase exploration - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "multimodal-looker": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Vision - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "prometheus": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Architect - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "metis": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Strategy - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "momus": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Critique - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "atlas": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Heavy lifting - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "executor": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Implementation - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "reviewer": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Code review - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "tester": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Test generation - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "security-auditor": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Security - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "refactorer": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Refactoring - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "doc-writer": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Documentation - Qwen 3.5 Plus (OAuth/session-backed)"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"]
+    },
+    "go": {
+      "command": ["gopls"],
+      "extensions": [".go"]
+    },
+    "markdown": {
+      "command": ["marksman", "server"],
+      "extensions": [".md"]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "UI/UX - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "artistry": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Creative - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "writing": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Writing - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "quick": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Fast tasks - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "ultrabrain": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Heavy reasoning - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "implementation": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Implementation - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "review": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Review - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "testing": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Testing - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "security": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Security - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "unspecified-low": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "General low - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "unspecified-high": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "General high - Qwen 3.5 Plus (OAuth/session-backed)"
+    },
+    "deep": {
+      "model": "qwen/qwen3.5-plus",
+      "comment": "Deep reasoning - Qwen 3.5 Plus (OAuth/session-backed)"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

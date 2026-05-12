@@ -1,0 +1,156 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": ["anthropic-context-window-limit-recovery"],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Main coordinator - OpenAI Codex 5.3 (primary)"
+    },
+    "oracle": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Design and debugging - Sonnet 4.6 (super sub)"
+    },
+    "librarian": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Research - OpenAI Codex 5.3"
+    },
+    "explore": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Codebase exploration - OpenAI Codex 5.3"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Vision and interpretation - Sonnet 4.6 (super sub)"
+    },
+    "prometheus": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Architecture - OpenAI Codex 5.3"
+    },
+    "metis": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Strategy - OpenAI Codex 5.3"
+    },
+    "momus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Critique and quality gate - Sonnet 4.6 (super sub)"
+    },
+    "atlas": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Heavy lifting - OpenAI Codex 5.3"
+    },
+    "executor": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Fast implementation - OpenAI Codex 5.3"
+    },
+    "reviewer": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Code review - Sonnet 4.6 (super sub)"
+    },
+    "tester": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Test generation - OpenAI Codex 5.3"
+    },
+    "security-auditor": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Security - OpenAI Codex 5.3"
+    },
+    "refactorer": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Refactoring - OpenAI Codex 5.3"
+    },
+    "doc-writer": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Documentation and polish - Sonnet 4.6 (super sub)"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"]
+    },
+    "go": {
+      "command": ["gopls"],
+      "extensions": [".go"]
+    },
+    "markdown": {
+      "command": ["marksman", "server"],
+      "extensions": [".md"]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "UI/UX - Sonnet 4.6 (super sub)"
+    },
+    "artistry": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "high",
+      "comment": "Creative work - Sonnet 4.6 (super sub)"
+    },
+    "writing": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Writing - Sonnet 4.6 (super sub)"
+    },
+    "quick": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Fast tasks - OpenAI Codex 5.3"
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Heavy reasoning - OpenAI Codex 5.3"
+    },
+    "implementation": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Implementation - OpenAI Codex 5.3"
+    },
+    "review": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Review - Sonnet 4.6 (super sub)"
+    },
+    "testing": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "Testing - OpenAI Codex 5.3"
+    },
+    "security": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Security - OpenAI Codex 5.3"
+    },
+    "unspecified-low": {
+      "model": "openai/gpt-5.3-codex",
+      "comment": "General low - OpenAI Codex 5.3"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "General high - Sonnet 4.6 (super sub)"
+    },
+    "deep": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Deep reasoning - OpenAI Codex 5.3"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

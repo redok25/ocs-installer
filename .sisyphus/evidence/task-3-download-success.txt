@@ -1,0 +1,3 @@
+  Downloading test-download.bin (attempt 1)...
+  [OK] Downloaded to C:\Users\redho\AppData\Local\Temp\test-download.bin
+DOWNLOAD_OK: 100 bytes

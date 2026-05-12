@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ramtinj95/opencode-tokenscope/main/schemas/antigravity.schema.json",
+  "pid_offset_enabled": true,
+  "account_selection_strategy": "sticky",
+  "cli_first": true,
+  "dynamic_cli_first_mode": "conservative",
+  "dynamic_cli_first_observe": true,
+  "quota_refresh_interval_minutes": 5,
+  "profiles": {}
+}

@@ -1,0 +1,14 @@
+{
+  "version": "3.1.0",
+  "generatedAt": "2026-05-10T03:41:29.739Z",
+  "distribution": {
+    "openAiLane": "core"
+  },
+  "source": {
+    "gitCommit": "885bab6f6a38d1bff3bd013e4be54ec715963192",
+    "gitBranch": "main",
+    "gitTag": "",
+    "isDirty": false,
+    "dirtyFiles": []
+  }
+}

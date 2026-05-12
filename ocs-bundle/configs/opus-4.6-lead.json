@@ -1,0 +1,149 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Main coordinator - Opus 4.6 max (highest accuracy + reasoning for orchestration)"
+    },
+    "oracle": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Debugging & architecture consultant - Opus 4.6 max (hardest problems need the best model)"
+    },
+    "prometheus": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Architect - Opus 4.6 max (system design precision matters most)"
+    },
+    "metis": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Pre-planning strategy - Sonnet 4.6 max (fast + smart enough for scope analysis)"
+    },
+    "momus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "low",
+      "comment": "Plan critique - Sonnet 4.6 low (review tasks don't need max thinking depth)"
+    },
+    "explore": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Codebase grep - Gemini 3 Flash (pure pattern matching, speed > quality)"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Research & web search - Gemini 3 Flash (search-first, no heavy reasoning needed)"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Vision & multimodal - Gemini 3.1 Pro (best multimodal understanding)"
+    },
+    "atlas": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Heavy parallel workload - Gemini 3.1 Pro (1M context for large-scale tasks)"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ]
+    },
+    "markdown": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    },
+    "go": {
+      "command": [
+        "gopls"
+      ],
+      "extensions": [
+        ".go"
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "UI/UX - Gemini 3.1 Pro (multimodal + creative visual understanding)"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Creative problem-solving - Gemini 3.1 Pro (unconventional approaches)"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Documentation & prose - Gemini 3.1 Pro (fluent long-form output)"
+    },
+    "quick": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "low",
+      "comment": "Trivial single-file tasks - Flash low (speed first, minimal thinking)"
+    },
+    "ultrabrain": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Genuinely hard logic-heavy tasks - Opus 4.6 max (the only category that justifies full Opus)"
+    },
+    "deep": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Deep autonomous problem-solving - Opus 4.6 max"
+    },
+    "implementation": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Code implementation - Flash (fast execution for well-defined tasks)"
+    },
+    "review": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "low",
+      "comment": "Code review - Sonnet 4.6 low (precise feedback, low thinking sufficient)"
+    },
+    "testing": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Test generation - Flash (pattern-based, speed matters)"
+    },
+    "security": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Security audit - Opus 4.6 max (vulnerability reasoning needs highest accuracy)"
+    },
+    "unspecified-low": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "General low-effort tasks - Flash"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "General high-effort tasks - Sonnet 4.6 (quality + speed balance)"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "setupTitle": "OpenCode Configuration Setup",
+  "runtimeLabel": "Bun Runtime",
+  "release": {
+    "githubRepo": "andyvandaric/opencode-config-suites-releases",
+    "updateCommand": "bun update && bun pm ls"
+  },
+  "compression": {
+    "schemaVersion": 1,
+    "engine": "dcp",
+    "intentMode": "balanced",
+    "routing": {
+      "autoCommandPathEngine": "rtk",
+      "autoProsePathEngine": "caveman",
+      "defaultEngine": "dcp",
+      "ambiguousIntent": "reject",
+      "unavailableEngineBehavior": "error"
+    },
+    "engines": {
+      "dcp": {
+        "enabled": true
+      },
+      "caveman": {
+        "enabled": true,
+        "mode": "ultra"
+      },
+      "rtk": {
+        "enabled": true
+      }
+    }
+  },
+  "resourceModes": {
+    "default": "performance",
+    "options": [
+      {
+        "id": "low",
+        "label": "Low Resource",
+        "description": "Reduce CPU/RAM usage for lighter daily sessions"
+      },
+      {
+        "id": "balanced",
+        "label": "Balanced",
+        "description": "Best default for most users"
+      },
+      {
+        "id": "performance",
+        "label": "Performance (Recommended)",
+        "description": "Higher quality behavior for complex workloads"
+      }
+    ]
+  }
+}

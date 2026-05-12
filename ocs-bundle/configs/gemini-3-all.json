@@ -1,0 +1,155 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Main coordinator - Gemini 3.1 Pro high (deepest Gemini reasoning for orchestration)"
+    },
+    "oracle": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Debugging & architecture consultant - Gemini 3.1 Pro high (1M context + best Gemini reasoning)"
+    },
+    "prometheus": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Architect - Gemini 3.1 Pro high (system design needs deepest reasoning)"
+    },
+    "metis": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Pre-planning strategy - Gemini 3.1 Pro high (scope analysis benefits from full thinking)"
+    },
+    "momus": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "low",
+      "comment": "Plan critique - Gemini 3.1 Pro low (review tasks don't need max thinking depth)"
+    },
+    "explore": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Codebase grep - Gemini 3 Flash high (fast + enough thinking for pattern discovery)"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Research & web search - Gemini 3 Flash high (search-first, speed is priority)"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Vision & multimodal - Gemini 3.1 Pro high (Gemini's strongest native capability)"
+    },
+    "atlas": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Heavy parallel workload - Gemini 3.1 Pro high (1M context handles massive tasks)"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ]
+    },
+    "markdown": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    },
+    "go": {
+      "command": [
+        "gopls"
+      ],
+      "extensions": [
+        ".go"
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "UI/UX - Gemini 3.1 Pro high (Gemini leads in multimodal + visual understanding)"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Creative problem-solving - Gemini 3.1 Pro high (unconventional approaches)"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "low",
+      "comment": "Documentation & prose - Gemini 3.1 Pro low (fluent long-form, minimal thinking needed)"
+    },
+    "quick": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "minimal",
+      "comment": "Trivial single-file tasks - Flash minimal (maximum speed, zero overhead)"
+    },
+    "ultrabrain": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Hard logic-heavy tasks - Gemini 3.1 Pro high (ceiling of Gemini reasoning)"
+    },
+    "deep": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Deep autonomous problem-solving - Gemini 3.1 Pro high"
+    },
+    "implementation": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "low",
+      "comment": "Code implementation - Flash low (fast execution + light reasoning for well-defined tasks)"
+    },
+    "review": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "medium",
+      "comment": "Code review - Flash medium (balance: fast feedback with enough thinking for precision)"
+    },
+    "testing": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "low",
+      "comment": "Test generation - Flash low (pattern-based, speed over depth)"
+    },
+    "security": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Security audit - Gemini 3.1 Pro high (vulnerability reasoning needs deepest analysis)"
+    },
+    "unspecified-low": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "minimal",
+      "comment": "General low-effort tasks - Flash minimal"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "medium",
+      "comment": "General high-effort tasks - Flash medium (speed + reasonable depth)"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

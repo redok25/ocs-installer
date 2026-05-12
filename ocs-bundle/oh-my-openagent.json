@@ -1,0 +1,358 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Main coordinator - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "oracle": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Design and debugging - GPT 5.5",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "librarian": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Research - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "explore": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "low",
+      "comment": "Codebase exploration - Codex 5.3",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "multimodal-looker": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Vision and interpretation - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "prometheus": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Architecture - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "metis": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Strategy - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "momus": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Critique and quality gate - GPT 5.5",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "atlas": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Heavy lifting - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "hephaestus": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Deep engineering execution - GPT 5.5",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ]
+    },
+    "go": {
+      "command": [
+        "gopls"
+      ],
+      "extensions": [
+        ".go"
+      ]
+    },
+    "markdown": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    },
+    "toml": {
+      "command": [
+        "taplo",
+        "lsp",
+        "stdio"
+      ],
+      "extensions": [
+        ".toml"
+      ]
+    },
+    "typescript": {
+      "command": [
+        "typescript-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx",
+        ".mjs",
+        ".cjs"
+      ]
+    },
+    "python": {
+      "command": [
+        "pyright-langserver",
+        "--stdio"
+      ],
+      "extensions": [
+        ".py",
+        ".pyi"
+      ]
+    },
+    "powershell": {
+      "command": [
+        "pwsh",
+        "-NoLogo",
+        "-NoProfile",
+        "-File",
+        "C:\\Users\\redho\\.local\\powershell-editor-services\\current\\PowerShellEditorServices\\Start-EditorServices.ps1",
+        "-BundledModulesPath",
+        "C:\\Users\\redho\\.local\\powershell-editor-services\\current",
+        "-LogPath",
+        "C:\\Users\\redho\\.local\\powershell-editor-services\\runtime\\logs",
+        "-SessionDetailsPath",
+        "C:\\Users\\redho\\.local\\powershell-editor-services\\runtime\\session.json",
+        "-FeatureFlags",
+        "@()",
+        "-AdditionalModules",
+        "@()",
+        "-HostName",
+        "OpenCode",
+        "-HostProfileId",
+        "opencode",
+        "-HostVersion",
+        "3.1.0",
+        "-Stdio"
+      ],
+      "extensions": [
+        ".ps1",
+        ".psm1",
+        ".psd1"
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "UI/UX - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "artistry": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Creative work - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "writing": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Writing - Codex 5.3",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "quick": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "low",
+      "comment": "Fast tasks - Codex 5.3",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Heavy reasoning - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "implementation": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Implementation - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "review": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Review - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "testing": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Testing - Codex 5.3",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "security": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Security - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "unspecified-low": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "low",
+      "comment": "General low - Codex 5.3",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "unspecified-high": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "General high - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "deep": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Deep reasoning - GPT 5.4",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "executor": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Compat alias - legacy 'executor' now maps to 'implementation' category",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "reviewer": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Compat alias - legacy 'reviewer' now maps to 'review' category",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "tester": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Compat alias - legacy 'tester' now maps to 'testing' category",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    },
+    "security-auditor": {
+      "model": "openai/gpt-5.5",
+      "variant": "max",
+      "comment": "Compat alias - legacy 'security-auditor' now maps to 'security' category",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "refactorer": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "comment": "Compat alias - legacy 'refactorer' now maps to 'deep' category",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking"
+      ]
+    },
+    "doc-writer": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "high",
+      "comment": "Compat alias - legacy 'doc-writer' now maps to 'writing' category",
+      "fallback_models": [
+        "google/antigravity-claude-sonnet-4-6-thinking",
+        "openai/gpt-5.5"
+      ]
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": [
+        "impeccable-style"
+      ],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": [
+        "implementation",
+        "security"
+      ]
+    }
+  },
+  "background_task": {
+    "defaultConcurrency": 9
+  }
+}

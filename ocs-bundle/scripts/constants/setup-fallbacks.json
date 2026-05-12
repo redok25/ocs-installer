@@ -1,0 +1,123 @@
+{
+  "version": "unknown",
+  "setupRuntime": {
+    "setupTitle": "OpenCode Configuration Setup",
+    "runtimeLabel": "Bun Runtime",
+    "release": {
+      "githubRepo": "",
+      "updateCommand": "bun update && bun pm ls"
+    },
+    "compression": {
+      "schemaVersion": 1,
+      "engine": "dcp",
+      "intentMode": "balanced",
+      "routing": {
+        "autoCommandPathEngine": "rtk",
+        "autoProsePathEngine": "caveman",
+        "defaultEngine": "dcp",
+        "ambiguousIntent": "reject",
+        "unavailableEngineBehavior": "error"
+      },
+      "engines": {
+        "dcp": {
+          "enabled": true
+        },
+        "caveman": {
+          "enabled": true,
+          "mode": "ultra"
+        },
+        "rtk": {
+          "enabled": true
+        }
+      }
+    },
+    "resourceModes": {
+      "default": "performance",
+      "options": [
+        {
+          "id": "low",
+          "label": "Low Resource",
+          "description": "Reduce CPU/RAM pressure for daily usage"
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced",
+          "description": "Quality and resource usage in balance"
+        },
+        {
+          "id": "performance",
+          "label": "Performance (Recommended)",
+          "description": "Highest quality behavior for complex tasks"
+        }
+      ],
+      "policies": {
+        "low": {
+          "globalVariantMap": {
+            "max": "low",
+            "high": "low",
+            "medium": "low"
+          },
+          "roleVariantOverrides": {
+            "quick": "minimal",
+            "explore": "minimal",
+            "librarian": "low",
+            "implementation": "low",
+            "testing": "low",
+            "unspecified-low": "minimal",
+            "atlas": "low"
+          }
+        },
+        "balanced": {
+          "globalVariantMap": {},
+          "roleVariantOverrides": {}
+        },
+        "performance": {
+          "globalVariantMap": {
+            "low": "high",
+            "medium": "high",
+            "minimal": "low"
+          },
+          "roleVariantOverrides": {
+            "sisyphus": "max",
+            "oracle": "max",
+            "atlas": "max",
+            "prometheus": "max",
+            "metis": "max",
+            "hephaestus": "max",
+            "ultrabrain": "max",
+            "implementation": "high",
+            "visual-engineering": "high",
+            "artistry": "high",
+            "writing": "high",
+            "review": "high",
+            "deep": "high",
+            "librarian": "high",
+            "multimodal-looker": "high",
+            "momus": "high",
+            "refactorer": "high",
+            "security": "high",
+            "testing": "high",
+            "unspecified-high": "high",
+            "quick": "low",
+            "explore": "low",
+            "unspecified-low": "low"
+          }
+        }
+      }
+    }
+  },
+  "profileCatalog": {
+    "profileDisplayOrder": [],
+    "legacyProfileAliasMap": {},
+    "profileScopeHints": {
+      "all": "[scope: all agents/categories use one family]",
+      "lead": "[scope: lead roles use primary family, workers may be mixed]",
+      "mixed": "[scope: mixed strategy profile]"
+    },
+    "profileDescriptionOverrides": {},
+    "modelLabelReplacements": []
+  },
+  "updateMessages": {
+    "skippedReleaseCheck": "   [Update Check: skipped - unable to read latest release]"
+  }
+}

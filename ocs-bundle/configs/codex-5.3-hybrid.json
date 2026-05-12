@@ -1,0 +1,171 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/code-yeongyu/oh-my-opencode@master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "browser_automation_engine": {
+    "provider": "playwright"
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Main coordinator - Codex 5.3 (CRITICAL)"
+    },
+    "oracle": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Design & debugging - Gemini 3.1 Pro"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Research - Gemini 3.1 Pro"
+    },
+    "explore": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Codebase exploration - Gemini 3 Flash (reduced from Pro)"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Vision - Gemini 3.1 Pro"
+    },
+    "prometheus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Architect - Sonnet 4.6 (switched from Codex to save quota)"
+    },
+    "metis": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "variant": "max",
+      "comment": "Strategy - Sonnet 4.6 (switched from Codex)"
+    },
+    "momus": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Critique - Sonnet 4.6 (switched from Codex)"
+    },
+    "atlas": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Heavy lifting - Gemini 3.1 Pro"
+    },
+    "executor": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Fast implementation - Gemini 3 Flash"
+    },
+    "reviewer": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Code review - Sonnet 4.6 (switched from Codex)"
+    },
+    "tester": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Test generation - Gemini 3 Flash"
+    },
+    "security-auditor": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Security - Codex 5.3 (CRITICAL, needs advanced reasoning)"
+    },
+    "refactorer": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Refactoring - Gemini 3.1 Pro"
+    },
+    "doc-writer": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Documentation - Gemini 3.1 Pro"
+    }
+  },
+  "lsp": {
+    "rust": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ]
+    },
+    "markdown": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    },
+    "go": {
+      "command": [
+        "gopls"
+      ],
+      "extensions": [
+        ".go"
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "UI/UX - Gemini 3.1 Pro"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high",
+      "comment": "Creative - Gemini 3.1 Pro"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "comment": "Writing - Gemini 3.1 Pro"
+    },
+    "quick": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high",
+      "comment": "Fast tasks - Gemini 3 Flash"
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Heavy reasoning - Codex 5.3 (CRITICAL only)"
+    },
+    "implementation": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Implementation - Gemini 3 Flash"
+    },
+    "review": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "Review - Sonnet 4.6 (switched from Codex)"
+    },
+    "testing": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "Testing - Gemini 3 Flash"
+    },
+    "security": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "max",
+      "comment": "Security - Codex 5.3 (CRITICAL)"
+    },
+    "unspecified-low": {
+      "model": "google/antigravity-gemini-3-flash",
+      "comment": "General low - Gemini 3 Flash"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-claude-sonnet-4-6-thinking",
+      "comment": "General high - Sonnet 4.6 (switched from Codex)"
+    },
+    "deep": {
+      "model": "google/antigravity-claude-opus-4-6-thinking",
+      "variant": "max",
+      "comment": "Deep reasoning - Opus 4.6"
+    }
+  },
+  "impeccableStyleOverride": {
+    "trigger": {
+      "loadSkills": ["impeccable-style"],
+      "fallbackCategory": "visual-engineering"
+    },
+    "antiTrigger": {
+      "categories": ["implementation", "security"]
+    }
+  }
+}

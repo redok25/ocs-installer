@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "managedBy": "ocs",
+  "controlPlane": {
+    "schemaVersion": 1,
+    "engine": "dcp",
+    "intentMode": "balanced",
+    "routing": {
+      "autoCommandPathEngine": "rtk",
+      "autoProsePathEngine": "caveman",
+      "defaultEngine": "dcp",
+      "ambiguousIntent": "reject",
+      "unavailableEngineBehavior": "error"
+    },
+    "engines": {
+      "dcp": {
+        "enabled": true
+      },
+      "caveman": {
+        "enabled": true,
+        "mode": "ultra"
+      },
+      "rtk": {
+        "enabled": true
+      }
+    }
+  },
+  "runtime": {
+    "compactEngine": "dcp",
+    "commandPathPolicy": "rtk",
+    "prosePathPolicy": "caveman",
+    "ambiguousIntent": "reject",
+    "unavailableEngineBehavior": "error",
+    "externalEngineConfigStatus": {
+      "dcp": "managed",
+      "rtk": "managed",
+      "caveman": "managed"
+    }
+  },
+  "artifacts": {
+    "policyFilePath": "C:\\Users\\redho\\.config\\opencode\\ocs-compression.json",
+    "dcpConfigPath": "C:\\Users\\redho\\.config\\opencode\\dcp.jsonc",
+    "projectionFilePath": "C:\\Users\\redho\\.config\\opencode\\compression-routing.json",
+    "rtkPluginPath": "C:\\Users\\redho\\.config\\opencode\\plugins\\rtk.ts",
+    "cavemanSkillPath": "C:\\Users\\redho\\.config\\opencode\\skills\\caveman\\SKILL.md"
+  }
+}

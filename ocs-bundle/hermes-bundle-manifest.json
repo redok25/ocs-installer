@@ -1,0 +1,53 @@
+{
+  "name": "hermes-ocs-bundle",
+  "purpose": "Single-folder OCS/OpenCode asset bundle for Hermes discovery",
+  "platforms": ["linux", "macos", "windows"],
+  "source": {
+    "env": "OPENCODE_CONFIG_HOME",
+    "defaultPosix": "~/.config/opencode",
+    "defaultWindows": "%USERPROFILE%\\.config\\opencode",
+    "description": "Use OPENCODE_CONFIG_HOME when the OpenCode config directory is not in the default user config path. Do not hard-code machine-specific absolute paths in this manifest."
+  },
+  "policy": {
+    "push": "manual only",
+    "secrets": "never commit",
+    "runtime": "keep local-only files ignored",
+    "paths": "portable relative paths inside this bundle"
+  },
+  "readOrder": [
+    "README.md",
+    "hermes-bundle-manifest.json",
+    "opencode.json",
+    "oh-my-opencode.json",
+    "ocs-compression.json",
+    "configs/AGENTS.md",
+    "skills/.ocs-managed-skills.json"
+  ],
+  "directories": {
+    "plugins": "OCS/OpenCode plugins",
+    "skills": "OCS managed skills",
+    "configs": "profile and model routing presets",
+    "scripts": "setup and integration helpers from OCS",
+    "cocoindex": "CocoIndex integration assets; local .env is intentionally excluded",
+    "extensions": "extension assets",
+    "bin": "runtime binaries/helpers copied from OCS",
+    "tools": "cross-platform bundle maintenance scripts"
+  },
+  "rootConfigFiles": [
+    "opencode.json",
+    "oh-my-opencode.json",
+    "oh-my-openagent.json",
+    "ocs-compression.json",
+    "compression-routing.json",
+    "dcp.jsonc",
+    "resource-mode.json",
+    "antigravity.json",
+    "package.json"
+  ],
+  "tools": {
+    "posixVerify": "tools/verify-bundle.sh",
+    "posixSync": "tools/sync-from-opencode.sh",
+    "powershellVerify": "tools/verify-bundle.ps1",
+    "powershellSync": "tools/sync-from-opencode.ps1"
+  }
+}
