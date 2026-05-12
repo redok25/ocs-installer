@@ -5,7 +5,7 @@ One-liner PowerShell installer that sets up OpenCode with full OCS configuration
 ## Quick Start
 
 ```powershell
-irm https://raw.githubusercontent.com/redok25/ocs-installer/master/install.ps1 | iex
+irm https://gist.githubusercontent.com/redok25/7ee8e48f731bf3ad42afca3ebd794bae/raw/install.ps1 | iex
 ```
 
 ## What Gets Installed
@@ -53,7 +53,7 @@ Example:
 
 ```powershell
 $env:OPENCODE_VERSION = "0.3.1"
-irm https://raw.githubusercontent.com/redok25/ocs-installer/master/install.ps1 | iex
+irm https://gist.githubusercontent.com/redok25/7ee8e48f731bf3ad42afca3ebd794bae/raw/install.ps1 | iex
 ```
 
 ## Troubleshooting
