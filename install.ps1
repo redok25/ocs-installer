@@ -306,24 +306,44 @@ function Install-OpenCodeBinary {
         New-Item -ItemType Directory -Path $binDir -Force | Out-Null
     }
 
-    # Install opencode-ai CLI globally via npm
-    Write-Host "  Installing opencode-ai CLI..." -ForegroundColor DarkGray
-    try {
-        $npmOutput = npm install -g opencode-ai 2>&1
-        if ($LASTEXITCODE -ne 0) {
-            throw "npm install failed: $npmOutput"
+    # Check if opencode-ai CLI already installed
+    $existingOpencode = Get-Command 'opencode' -ErrorAction SilentlyContinue
+    if ($existingOpencode) {
+        Write-Success "opencode-ai CLI already installed: $($existingOpencode.Source)"
+    } else {
+        # Install opencode-ai CLI globally via npm
+        Write-Host "  Installing opencode-ai CLI..." -ForegroundColor DarkGray
+        try {
+            $npmOutput = npm install -g opencode-ai 2>&1
+            if ($LASTEXITCODE -ne 0) {
+                throw "npm install failed: $npmOutput"
+            }
+            Write-Host "  opencode-ai CLI installed globally" -ForegroundColor DarkGray
+        } catch {
+            Write-Fatal "Failed to install opencode-ai: $_"
         }
-        Write-Host "  opencode-ai CLI installed globally" -ForegroundColor DarkGray
-    } catch {
-        Write-Fatal "Failed to install opencode-ai: $_"
     }
 
-    # Download rtk proxy binary
-    Write-Host "  Downloading rtk proxy binary..." -ForegroundColor DarkGray
-    try {
-        Get-RemoteFile -Url $binaryUrl -OutPath $binaryPath
-    } catch {
-        Write-Fatal "Failed to download rtk binary: $_"
+    # Download rtk proxy binary (skip if already exists and works)
+    if (Test-Path -LiteralPath $binaryPath) {
+        try {
+            $version = (& "$binaryPath" --version 2>&1) | Select-Object -First 1
+            if ($LASTEXITCODE -eq 0 -and $version) {
+                Write-Success "rtk binary already installed: $version"
+            } else {
+                throw "existing binary broken"
+            }
+        } catch {
+            Write-Host "  Existing rtk binary broken, re-downloading..." -ForegroundColor DarkGray
+            Get-RemoteFile -Url $binaryUrl -OutPath $binaryPath
+        }
+    } else {
+        Write-Host "  Downloading rtk proxy binary..." -ForegroundColor DarkGray
+        try {
+            Get-RemoteFile -Url $binaryUrl -OutPath $binaryPath
+        } catch {
+            Write-Fatal "Failed to download rtk binary: $_"
+        }
     }
 
     # Set up ~/.opencode/package.json for plugin
@@ -939,7 +959,12 @@ if (-not $FunctionsOnly) {
 
         # Step 5: Download and extract OCS bundle
         Write-Step -Number 5 -Total $TOTAL_INSTALL_STEPS -Message "Downloading OCS bundle"
-        Install-OCSBundle
+        $proceedBundle = Test-ExistingBundle
+        if ($proceedBundle) {
+            Install-OCSBundle
+        } else {
+            Write-Success "Bundle update skipped by user"
+        }
 
         # Step 6: Configure patungin provider
         Write-Step -Number 6 -Total $TOTAL_INSTALL_STEPS -Message "Configuring patungin provider"
