@@ -321,24 +321,15 @@ function Test-ExistingBundle {
 }
 
 function Install-OCSBundle {
-    param(
-        [string]$GitHubToken = ""
-    )
-    $zipUrl     = "https://api.github.com/repos/redok25/ocs-installer/zipball/main"
+    $zipUrl     = "$OCS_REPO_URL/archive/refs/heads/master.zip"
     $tempDir    = [System.IO.Path]::GetTempPath()
     $zipPath    = Join-Path $tempDir "ocs-bundle-main.zip"
     $extractDir = Join-Path $tempDir "ocs-bundle-extract"
 
-    # Build auth headers if token provided
-    $authHeaders = @{}
-    if ($GitHubToken) {
-        $authHeaders = @{ Authorization = "token $GitHubToken" }
-    }
-
-    # Download bundle zip
+    # Download bundle zip (public repo, no auth needed)
     Write-Host "  Downloading OCS bundle..." -ForegroundColor DarkGray
     try {
-        Get-RemoteFile -Url $zipUrl -OutPath $zipPath -Headers $authHeaders
+        Get-RemoteFile -Url $zipUrl -OutPath $zipPath
     } catch {
         Write-Fatal "Failed to download OCS bundle: $_"
     }
@@ -688,101 +679,6 @@ function Get-PatunginApiKey {
     return ""
 }
 
-function Get-GitHubToken {
-    # GitHub OAuth App Client ID for the OCS installer.
-    # To use Device Flow, create a GitHub OAuth App at:
-    #   https://github.com/settings/developers → "New OAuth App"
-    # Set Homepage URL to https://github.com/redok25/ocs-installer
-    # Set Authorization callback URL to https://localhost (not used for device flow)
-    # Then set the Client ID below or via the OCS_GITHUB_CLIENT_ID environment variable.
-    $clientId = if ($env:OCS_GITHUB_CLIENT_ID) { $env:OCS_GITHUB_CLIENT_ID } else { "Ov23liIXhas47rLY2YbU" }
-
-    Write-Host "  Authenticating with GitHub..." -ForegroundColor DarkGray
-
-    # Step 1: Request device code
-    $codeResponse = $null
-    try {
-        $codeResponse = Invoke-RestMethod -Method Post `
-            -Uri "https://github.com/login/device/code" `
-            -Body @{ client_id = $clientId; scope = "repo" } `
-            -ContentType "application/x-www-form-urlencoded" `
-            -Headers @{ Accept = "application/json" } `
-            -ErrorAction Stop
-    } catch {
-        Write-Fatal "Failed to request device code from GitHub: $_"
-    }
-
-    $deviceCode = $codeResponse.device_code
-    $userCode   = $codeResponse.user_code
-    $verifyUrl  = $codeResponse.verification_uri
-    $interval   = if ($codeResponse.interval) { [int]$codeResponse.interval } else { 5 }
-    $expiresIn  = if ($codeResponse.expires_in) { [int]$codeResponse.expires_in } else { 900 }
-
-    # Step 2: Show code and open browser
-    Write-Host ""
-    Write-Host "  ┌─────────────────────────────────────────┐" -ForegroundColor Yellow
-    Write-Host "  │  Enter this code in your browser:       │" -ForegroundColor Yellow
-    Write-Host "  │                                         │" -ForegroundColor Yellow
-    Write-Host "  │        $userCode              │" -ForegroundColor White
-    Write-Host "  │                                         │" -ForegroundColor Yellow
-    Write-Host "  └─────────────────────────────────────────┘" -ForegroundColor Yellow
-    Write-Host ""
-    Write-Host "  Opening browser to: $verifyUrl" -ForegroundColor DarkGray
-    Start-Process $verifyUrl
-    Write-Host "  Waiting for authorization..." -ForegroundColor DarkGray
-
-    # Step 3: Poll for token
-    $deadline = (Get-Date).AddSeconds($expiresIn)
-    $token    = $null
-
-    while ((Get-Date) -lt $deadline) {
-        Start-Sleep -Seconds ($interval + 1)
-        try {
-            $tokenResponse = Invoke-RestMethod -Method Post `
-                -Uri "https://github.com/login/oauth/access_token" `
-                -Body @{
-                    client_id   = $clientId
-                    device_code = $deviceCode
-                    grant_type  = "urn:ietf:params:oauth:grant-type:device_code"
-                } `
-                -ContentType "application/x-www-form-urlencoded" `
-                -Headers @{ Accept = "application/json" } `
-                -ErrorAction Stop
-
-            if ($tokenResponse.access_token) {
-                $token = $tokenResponse.access_token
-                break
-            }
-            switch ($tokenResponse.error) {
-                "authorization_pending" { continue }
-                "slow_down"            { $interval = $interval + 5; continue }
-                "expired_token"        { Write-Fatal "Authorization timed out. Please run the installer again." }
-                "access_denied"        { Write-Fatal "Authorization was denied. Please run the installer again and approve access." }
-            }
-        } catch {
-            # Network error during polling — retry
-            continue
-        }
-    }
-
-    if (-not $token) {
-        Write-Fatal "Authorization timed out after $expiresIn seconds."
-    }
-
-    # Verify token can access the private repo
-    try {
-        $null = Invoke-RestMethod -Uri "https://api.github.com/repos/redok25/ocs-installer" `
-            -Headers @{
-                Authorization = "token $token"
-                Accept        = "application/vnd.github.v3+json"
-            } -ErrorAction Stop
-        Write-Success "GitHub authentication successful"
-    } catch {
-        Write-Fatal "Token obtained but cannot access redok25/ocs-installer. Check repo permissions."
-    }
-
-    return $token
-}
 
 # ---------------------------------------------------------------------------
 # Verification Functions
@@ -971,16 +867,7 @@ if (-not $FunctionsOnly) {
 
         # Step 5: Download and extract OCS bundle
         Write-Step -Number 5 -Total $TOTAL_INSTALL_STEPS -Message "Downloading OCS bundle"
-        if ($env:OCS_GITHUB_TOKEN) {
-            Write-Host "  Using token from OCS_GITHUB_TOKEN environment variable" -ForegroundColor DarkGray
-            $gitHubToken = $env:OCS_GITHUB_TOKEN
-        } else {
-            $gitHubToken = Get-GitHubToken
-        }
-        if (-not $gitHubToken) {
-            Write-Fatal "No GitHub token provided. Cannot download private bundle."
-        }
-        Install-OCSBundle -GitHubToken $gitHubToken
+        Install-OCSBundle
 
         # Step 6: Configure patungin provider
         Write-Step -Number 6 -Total $TOTAL_INSTALL_STEPS -Message "Configuring patungin provider"
