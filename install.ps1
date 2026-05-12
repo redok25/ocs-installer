@@ -374,7 +374,11 @@ function Install-OCSBundle {
     if ($null -eq $innerDir) {
         Write-Fatal "Bundle zip extracted but no subdirectory found in '$extractDir'"
     }
-    $sourceDir = $innerDir.FullName
+    # The actual bundle is inside ocs-bundle/ within the repo
+    $sourceDir = Join-Path $innerDir.FullName "ocs-bundle"
+    if (-not (Test-Path -LiteralPath $sourceDir)) {
+        Write-Fatal "ocs-bundle/ directory not found in extracted archive"
+    }
 
     # Ensure bundle destination exists
     if (-not (Test-Path -LiteralPath $BUNDLE_DIR)) {
