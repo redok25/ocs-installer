@@ -255,23 +255,47 @@ function Test-ExistingInstall {
 function Install-OpenCodeBinary {
     $binDir     = Join-Path $INSTALL_DIR "bin"
     $binaryPath = Join-Path $binDir "rtk.exe"
-    $binaryUrl  = "$OCS_REPO_URL/bin/rtk.exe"
+    $binaryUrl  = "https://raw.githubusercontent.com/redok25/ocs-installer/master/bin/rtk.exe"
 
     # Ensure bin directory exists
     if (-not (Test-Path -LiteralPath $binDir)) {
         New-Item -ItemType Directory -Path $binDir -Force | Out-Null
     }
 
-    # Download binary
-    Write-Host "  Downloading OpenCode binary..." -ForegroundColor DarkGray
+    # Install opencode-ai CLI globally via npm
+    Write-Host "  Installing opencode-ai CLI..." -ForegroundColor DarkGray
+    try {
+        $npmOutput = npm install -g opencode-ai 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            throw "npm install failed: $npmOutput"
+        }
+        Write-Host "  opencode-ai CLI installed globally" -ForegroundColor DarkGray
+    } catch {
+        Write-Fatal "Failed to install opencode-ai: $_"
+    }
+
+    # Download rtk proxy binary
+    Write-Host "  Downloading rtk proxy binary..." -ForegroundColor DarkGray
     try {
         Get-RemoteFile -Url $binaryUrl -OutPath $binaryPath
     } catch {
-        Write-Fatal "Failed to download OpenCode binary: $_"
+        Write-Fatal "Failed to download rtk binary: $_"
     }
 
-    # Verify binary runs
-    Write-Host "  Verifying binary..." -ForegroundColor DarkGray
+    # Set up ~/.opencode/package.json for plugin
+    $packageJsonPath = Join-Path $INSTALL_DIR "package.json"
+    if (-not (Test-Path -LiteralPath $packageJsonPath)) {
+        $packageJson = @{ dependencies = @{ "@opencode-ai/plugin" = "1.14.48" } }
+        $packageJson | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $packageJsonPath -Encoding UTF8
+        Write-Host "  Running npm install in $INSTALL_DIR..." -ForegroundColor DarkGray
+        $npmOut = npm install --prefix $INSTALL_DIR 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Warn "npm install in $INSTALL_DIR had issues: $npmOut"
+        }
+    }
+
+    # Verify rtk binary runs
+    Write-Host "  Verifying rtk binary..." -ForegroundColor DarkGray
     $version = $null
     try {
         $version = (& "$binaryPath" --version 2>&1) | Select-Object -First 1
