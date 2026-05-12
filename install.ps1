@@ -100,10 +100,11 @@ function Test-Prerequisite {
 }
 
 function Install-Bun {
-    # The real bun binary lives at $HOME\.bun\bin\bun.exe
+    # The real bun binary lives at $HOME\.bun\bin\bun.exe (or $env:BUN_INSTALL\bin\bun.exe)
     # Kiro-Cli ships a broken shim at AppData\Local\Kiro-Cli\bun (no .exe)
     # which causes "Cannot run a document in the middle of a pipeline"
-    $realBunDir = Join-Path $HOME ".bun\bin"
+    $bunRoot = if ($env:BUN_INSTALL) { $env:BUN_INSTALL } else { Join-Path $HOME ".bun" }
+    $realBunDir = Join-Path $bunRoot "bin"
     $realBunExe = Join-Path $realBunDir "bun.exe"
 
     # Check if bun resolves to the wrong path (Kiro-Cli wrapper)
@@ -701,7 +702,7 @@ function Test-ApiKeyValid {
         if ($response -and $response.data) {
             return $true
         }
-        return $true
+        return $false
     } catch {
         $msg = $_.Exception.Message
         Write-Host "  API key validation failed: $msg" -ForegroundColor DarkGray
