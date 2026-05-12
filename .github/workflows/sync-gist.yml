@@ -1,0 +1,23 @@
+name: Sync install.ps1 to Gist
+
+on:
+  push:
+    paths:
+      - 'install.ps1'
+    branches:
+      - master
+
+jobs:
+  sync-gist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Gist
+        env:
+          GH_TOKEN: ${{ secrets.GIST_PAT }}
+          GIST_ID: "7ee8e48f731bf3ad42afca3ebd794bae"
+        run: |
+          CONTENT=$(cat install.ps1)
+          # Use gh CLI to update the gist
+          gh gist edit "$GIST_ID" --filename install.ps1 -f install.ps1
