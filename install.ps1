@@ -435,25 +435,25 @@ function Set-PatunginConfig {
     $config = Get-Content -LiteralPath $sourceFile -Raw | ConvertFrom-Json
 
     # Ensure providers section exists
-    if (-not $config.providers) {
-        $config | Add-Member -NotePropertyName 'providers' -NotePropertyValue ([PSCustomObject]@{}) -Force
+    if (-not $config.provider) {
+        $config | Add-Member -NotePropertyName 'provider' -NotePropertyValue ([PSCustomObject]@{}) -Force
     }
 
     # Ensure patungin provider exists
-    if (-not $config.providers.patungin) {
-        $config.providers | Add-Member -NotePropertyName 'patungin' -NotePropertyValue ([PSCustomObject]@{}) -Force
+    if (-not $config.provider.patungin) {
+        $config.provider | Add-Member -NotePropertyName 'patungin' -NotePropertyValue ([PSCustomObject]@{}) -Force
     }
 
     # Set baseURL
-    $config.providers.patungin | Add-Member -NotePropertyName 'baseURL' -NotePropertyValue $PATUNGIN_BASE_URL -Force
+    $config.provider.patungin | Add-Member -NotePropertyName 'baseURL' -NotePropertyValue $PATUNGIN_BASE_URL -Force
 
     # Ensure options section exists
-    if (-not $config.providers.patungin.options) {
-        $config.providers.patungin | Add-Member -NotePropertyName 'options' -NotePropertyValue ([PSCustomObject]@{}) -Force
+    if (-not $config.provider.patungin.options) {
+        $config.provider.patungin | Add-Member -NotePropertyName 'options' -NotePropertyValue ([PSCustomObject]@{}) -Force
     }
 
     # Inject API key
-    $config.providers.patungin.options | Add-Member -NotePropertyName 'apiKey' -NotePropertyValue $ApiKey -Force
+    $config.provider.patungin.options | Add-Member -NotePropertyName 'apiKey' -NotePropertyValue $ApiKey -Force
 
     # Ensure config directory exists
     if (-not (Test-Path -LiteralPath $CONFIG_DIR)) {
