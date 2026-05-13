@@ -6,7 +6,6 @@
 *.local.*
 
 # Runtime/cache/dependencies
-node_modules/
 .cache/
 dist/
 coverage/
